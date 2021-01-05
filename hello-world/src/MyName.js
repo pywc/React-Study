@@ -1,15 +1,18 @@
+import { Component } from 'react';
 import './App.css';
 
-function MyName(props) {
-    return (
-        <div className='App-Content'>
-            Hello! My name is <b>{props.name}</b>.
-        </div>
-    )
-}
+class MyName extends Component {
+    static defaultProps = {
+        name: 'Default'
+    };
 
-MyName.defaultProps = {
-    name: 'Default'
-};
+    render() {
+        return (
+            <div>
+                Hello! My name is <b>{this.props.name}</b>.
+            </div>
+        )
+    };
+}
 
 export default MyName;
