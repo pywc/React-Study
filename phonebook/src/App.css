@@ -1,0 +1,14 @@
+.App {
+  background: black;
+  color: white;
+  font-size: 36px;
+  padding: 1rem;
+  font-weight: 600;
+}
+
+.App-Content {
+  color: black;
+  font-size: 20px;
+  padding: 1rem;
+  font-weight: 200;
+}
