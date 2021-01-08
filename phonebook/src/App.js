@@ -14,7 +14,8 @@ class App extends Component {
         phone: '010-0000-0000'
       }
       */
-    ]
+    ],
+    keyword: ''
   }
 
   // Entity Create Event Handler
@@ -32,7 +33,7 @@ class App extends Component {
 
     this.setState({
       information: tempInfo
-    })
+    });
 
     // To check if array is well fomratted in console
     console.log(JSON.stringify(tempInfo));
@@ -44,7 +45,7 @@ class App extends Component {
 
     this.setState({
       information: information.filter(info => info.id !== id)
-    })
+    });
   }
 
   handleEdit = (id, data) => {
@@ -56,10 +57,23 @@ class App extends Component {
           ? { ...info, ...data} // create new object and overwrite id and data
           : info // maintain original value
       )
-    })
+    });
   }
 
+  // for search feature
+  handleChange = (e) => {
+    this.setState({
+        keyword: e.target.value
+    });
+  }
+
+
   render() {
+    const { information, keyword } = this.state;
+    const filteredList = information.filter(
+      info => info.name.indexOf(keyword) !== -1
+    );
+
     return (
       <Fragment>
         <div className='App'>
@@ -70,8 +84,14 @@ class App extends Component {
             onCreate={this.handleCreate} 
           />
           <hr />
+          <b>Search-</b> 
+          <input
+            placeholder="Enter Name..."
+            onChange={this.handleChange}
+            value={keyword}
+          />
           <PhoneInfoList 
-            data={this.state.information}
+            data={filteredList}
             onRemove={this.handleRemove}
             onEdit={this.handleEdit}
           />

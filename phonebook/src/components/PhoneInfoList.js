@@ -11,9 +11,24 @@ class PhoneInfoList extends Component {
         onEdit: () => console.warn("onEdit not defined")
     }
 
+    // For efficiency; without this, PhoneInfoList and its sub-components will be
+    // rerendered every single time at search
+    // render() only called when this is true
+    shouldComponentUpdate(nextProps, nextState) {
+        return nextProps.data !== this.props.data;
+    }
+
     render() {
         // this.prop = 'information' in App.js
         const { data, onRemove, onEdit } = this.props;
+
+        if (data.length === 0) {
+            return(
+                <div>
+                    No entries.
+                </div>
+            )
+        }
 
         const list = data.map(
             // info: each entity in 'data'

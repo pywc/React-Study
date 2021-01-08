@@ -22,9 +22,12 @@ class PhoneInfo extends Component {
 
     handleRemove = () => {
         const { info, onRemove } = this.props;
+
+        // call onRemove from App.js (delivered via props)
         onRemove(info.id);
     }
 
+    // edit toggle
     handleEditState = () => {
         const { editing } = this.state;
         this.setState({ editing: !editing });
