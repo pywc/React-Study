@@ -49,7 +49,7 @@ class PhoneInfo extends Component {
         })
     }
 
-    // the logic when editing is changed
+    // the logic when editing toggle is changed
     componentDidUpdate(prevProps, prevState) {
         const { info, onEdit } = this.props;
 
@@ -71,7 +71,22 @@ class PhoneInfo extends Component {
         }
     }
 
+    // for efficiency; without this, previous entries will be rerendered 
+    // every time when an entry is added, edited, or removed.
+    shouldComponentUpdate(nextProps, nextState) {
+        if (!this.state.editing // if edit is complete
+            && !nextState.editing // if edit is toggled
+            && nextProps.info === this.props.info) { // if next props equal this props
+            return false;
+        }
+
+        return true;
+    }
+
     render() {
+        // to check if rendered only when needed
+        console.log("PhoneInfo.js " + this.props.info.id + " rendered");
+
         // Box style
         const style = {
             border: '1px solid black',
@@ -80,7 +95,7 @@ class PhoneInfo extends Component {
         };
 
         const {
-            id, name, phone
+            name, phone
         } = this.props.info;
 
         const { editing } = this.state;

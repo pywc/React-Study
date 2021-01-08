@@ -19,6 +19,9 @@ class PhoneInfoList extends Component {
     }
 
     render() {
+        // to check if rendered only when needed
+        console.log("PhoneInfoList.js rendered");
+
         // this.prop = 'information' in App.js
         const { data, onRemove, onEdit } = this.props;
 
