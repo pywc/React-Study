@@ -18,9 +18,9 @@ class Phoneform extends Component {
     handleSubmit = (e) => {
         // Prevent Page Reloading
         e.preventDefault();
-        // Deliver State to Parent via onCreate
+        // Deliver State to Parent (App.js) via onCreate
         this.props.onCreate(this.state);
-        // Reset
+        // Reset Form
         this.setState({
             name: '',
             phone: ''

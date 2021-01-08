@@ -22,8 +22,13 @@ class App extends Component {
     const { information } = this.state;
 
     // tempInfo was put here for crosschecking in console
-    // is more convenient to just put it in the setState statement
-    const tempInfo = information.concat({ id: this.id++, ...data })
+    // may be more convenient to just put it in the setState statement
+    const tempInfo = information.concat(
+                            { 
+                              id: this.id++, 
+                              ...data 
+                            }
+                      );
 
     this.setState({
       information: tempInfo
@@ -33,21 +38,43 @@ class App extends Component {
     console.log(JSON.stringify(tempInfo));
   }
 
-  render() {
+  // Entity Remove Event Handler
+  handleRemove = (id) => {
     const { information } = this.state;
 
-    
-    //console.log(JSON.stringify(information))
+    this.setState({
+      information: information.filter(info => info.id !== id)
+    })
+  }
 
+  handleEdit = (id, data) => {
+    const { information } = this.state;
+
+    this.setState({
+      information: information.map(
+        info => id === info.id
+          ? { ...info, ...data} // create new object and overwrite id and data
+          : info // maintain original value
+      )
+    })
+  }
+
+  render() {
     return (
       <Fragment>
         <div className='App'>
           Magnificent Phonebook
         </div>
         <div className='App-Content'>
-          <Phoneform onCreate={this.handleCreate} />
+          <Phoneform 
+            onCreate={this.handleCreate} 
+          />
           <hr />
-          <PhoneInfoList data={this.state.information} />
+          <PhoneInfoList 
+            data={this.state.information}
+            onRemove={this.handleRemove}
+            onEdit={this.handleEdit}
+          />
         </div>
       </Fragment>
     );
