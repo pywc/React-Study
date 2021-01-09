@@ -4,7 +4,7 @@ import './TodoListTemplate.css'
 class TodoListTemplate extends Component {
 
     render() {
-        const { form, children } = this.props;
+        const { palette, form, children } = this.props;
 
         return (
             <Fragment>
@@ -12,6 +12,9 @@ class TodoListTemplate extends Component {
                     <div className="title">
                         To-do List
                     </div>
+                    <section className="palette-wrapper">
+                        {palette}
+                    </section>
                     <section className="form-wrapper">
                         {form}
                     </section>

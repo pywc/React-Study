@@ -38,6 +38,14 @@
     text-decoration: line-through;
     color: #adb5bd;
   }
+
+  .checked-background {
+    background-color: #b4b4b4;
+  }
+
+  .checked-background:hover {
+    background: #cfcfcf;
+  }
   
   .check-mark {
     font-size: 1.5rem;

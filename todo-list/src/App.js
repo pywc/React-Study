@@ -2,11 +2,18 @@ import { Component, Fragment } from 'react';
 import TodoListTemplate from './components/TodoListTemplate.js'
 import Form from './components/Form.js'
 import TodoItemList from './components/TodoItemList.js'
+import Palette from './components/Palette.js'
+import './components/TodoListTemplate.css'
+
+
+const colors = ['#343a40', '#f03e3e', '#12b886', '#228ae6'];
 
 class App extends Component {
+  
   id = 0
   state = {
     input: '',
+    color: '#343a40',
     todos: [
       /*
        { id: '0', text: ' First todo', checked: false } ,
@@ -22,15 +29,22 @@ class App extends Component {
     });
   }
 
+  handleColorChange = (color) => {
+    this.setState({
+      color
+    });
+  }
+
 
   handleCreate = () => {
-    const { input, todos } = this.state;
+    const { input, todos, color } = this.state;
     this.setState({
       input: '', // reset
       todos: todos.concat({ // not 'push', since it still refers to the same ref
         id: this.id++,
         text: input,
-        checked: false
+        checked: false,
+        color
       })
     });
   }
@@ -67,26 +81,37 @@ class App extends Component {
   }
 
   render() {
-    const { input, todos } = this.state;
+    const { input, todos, color } = this.state;
     const {
       handleChange,
       handleCreate,
       handleKeyPress,
       handleToggle,
-      handleRemove
+      handleRemove,
+      handleColorChange
     } = this;
 
     return (
       <Fragment>
-        <div>
-          <TodoListTemplate form={(
-            <Form
-              value={input}
-              onChange={handleChange}
-              onCreate={handleCreate}
-              onKeyPress={handleKeyPress}
-            />
-          )}>
+        <div className="main">
+          <TodoListTemplate
+            palette={(
+              <Palette
+                colors={colors}
+                selected={color}
+                onChange={handleColorChange}
+              />
+            )}
+            form={(
+              <Form
+                value={input}
+                onChange={handleChange}
+                onCreate={handleCreate}
+                onKeyPress={handleKeyPress}
+                color={color}
+              />
+            )} 
+          >
             <TodoItemList 
               todos={todos} 
               onToggle={handleToggle}

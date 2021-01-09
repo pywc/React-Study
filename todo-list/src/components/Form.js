@@ -1,18 +1,21 @@
-import { Component } from 'react';
+import { Component, Fragment } from 'react';
 import './Form.css';
 
-class Form extends Component {
-    
-    render() {
-        const { value, onChange, onCreate, onKeyPress } = this.props;
 
-        return(
-            <div className="form">
-                <input value={value} onChange={onChange} onKeyPress={onKeyPress} />
-                <div className="create-button" onClick={onCreate}>
-                    Add
+class Form extends Component {
+
+    render() {
+        const { value, onChange, onCreate, onKeyPress, color } = this.props;
+
+        return (
+            <Fragment>
+                <div className="form">
+                    <input value={value} onChange={onChange} onKeyPress={onKeyPress} style={{color}} />
+                    <div className="create-button" onClick={onCreate}>
+                        Add
+                    </div>
                 </div>
-            </div>
+            </Fragment>
         );
     }
 }
