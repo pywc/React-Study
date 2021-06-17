@@ -1,6 +1,5 @@
-// Component for Phonebook entry form
-
 import { Component } from 'react';
+import './Phoneform.css';
 
 class Phoneform extends Component {
     state = {
@@ -29,29 +28,27 @@ class Phoneform extends Component {
 
     render() {
         return (
-            <form onSubmit={this.handleSubmit}>
-                <input
-                    placeholder="Name"
-                    value={this.state.name}
-                    onChange={this.handleChange}
-                    name="name"
-                />
-                <br />
-                <input
-                    placeholder="Phone"
-                    value={this.state.phone}
-                    onChange={this.handleChange}
-                    name="phone"
-                />
-                <br />
-                <button type="submit">Submit</button>
-                <hr />
-                <div>
-                    <b>Name:</b> {this.state.name}
-                    <br />
-                    <b>Phone:</b> {this.state.phone}
-                </div>
-            </form>
+            <div>
+                <form onSubmit={this.handleSubmit}>
+                    <div className="form">
+                        <input
+                            placeholder="Name"
+                            value={this.state.name}
+                            onChange={this.handleChange}
+                            name="name"
+                        />
+                        <br />
+                        <input
+                            placeholder="Phone"
+                            value={this.state.phone}
+                            onChange={this.handleChange}
+                            name="phone"
+                        />
+                        <button className="create-button" type="submit">Submit</button>
+                    </div>
+                </form>
+            </div>
+
         );
     }
 }

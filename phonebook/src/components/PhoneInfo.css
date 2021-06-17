@@ -1,0 +1,29 @@
+.list {
+    padding: '10px';
+    padding-bottom: 1rem;
+  }
+  
+  .list input {
+    font-size: 1rem;
+    outline: none;
+    border: none;
+    border-bottom: 1px solid #c5f6fa;
+  }
+  
+  .buttons {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    margin-left: 1rem;
+    background: #22b8cf;
+    border: 0px;
+    border-radius: 3px;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+  }
+  
+  .buttons:hover {
+    background: #3bc9db;
+  }

@@ -1,6 +1,7 @@
 // Component for showing a Phonebook entity
 
 import { Component } from 'react';
+import './PhoneInfo.css';
 
 class PhoneInfo extends Component {
     // For handling error in blank info
@@ -53,7 +54,7 @@ class PhoneInfo extends Component {
     componentDidUpdate(prevProps, prevState) {
         const { info, onEdit } = this.props;
 
-        if(!prevState.editing && this.state.editing) {
+        if (!prevState.editing && this.state.editing) {
             // when editing turns false -> true
             this.setState({
                 name: info.name,
@@ -87,13 +88,6 @@ class PhoneInfo extends Component {
         // to check if rendered only when needed
         console.log("PhoneInfo.js " + this.props.info.id + " rendered");
 
-        // Box style
-        const style = {
-            border: '1px solid black',
-            padding: '8px',
-            margin: '8px'
-        };
-
         const {
             name, phone
         } = this.props.info;
@@ -102,7 +96,7 @@ class PhoneInfo extends Component {
 
         if (editing) {
             return (
-                <div style={style}>
+                <div className="list">
                     <input
                         placeholder="Name"
                         value={this.state.name}
@@ -117,18 +111,20 @@ class PhoneInfo extends Component {
                         name="phone"
                     />
                     <br />
-                    <button onClick={this.handleEditState}>Update</button>
-                    <button onClick={this.handleRemove}>Remove</button>
+                    <br />
+                    <button className="buttons" onClick={this.handleEditState}>Update</button>
+                    <button className="buttons" onClick={this.handleRemove}>Remove</button>
                 </div>
             );
         }
 
         return (
-            <div style={style}>
+            <div className="list">
                 <div><b>{name}</b></div>
                 <div>{phone}</div>
-                <button onClick={this.handleEditState}>Edit</button>
-                <button onClick={this.handleRemove}>Remove</button>
+                <br />
+                <button className="buttons" onClick={this.handleEditState}>Edit</button>
+                <button className="buttons" onClick={this.handleRemove}>Remove</button>
             </div>
         );
     }

@@ -1,7 +1,7 @@
-import { Component, Fragment } from 'react';
-import './App.css'
+import { Component } from 'react';
 import Phoneform from './components/Phoneform.js';
 import PhoneInfoList from './components/PhoneInfoList.js';
+import './App.css'
 
 class App extends Component {
   id = 0
@@ -11,7 +11,7 @@ class App extends Component {
       {
         id: 0,
         name: 'John Appleseed',
-        phone: '010-0000-0000'
+        phone: '000-000-0000'
       }
       */
     ],
@@ -70,33 +70,39 @@ class App extends Component {
 
   render() {
     const { information, keyword } = this.state;
+
+    // search function
     const filteredList = information.filter(
       info => info.name.indexOf(keyword) !== -1
     );
 
     return (
-      <Fragment>
-        <div className='App'>
-          Magnificent Phonebook
-        </div>
-        <div className='App-Content'>
-          <Phoneform 
-            onCreate={this.handleCreate} 
-          />
-          <hr />
-          <b>Search-</b> 
-          <input
-            placeholder="Enter Name..."
-            onChange={this.handleChange}
-            value={keyword}
-          />
-          <PhoneInfoList 
-            data={filteredList}
-            onRemove={this.handleRemove}
-            onEdit={this.handleEdit}
-          />
-        </div>
-      </Fragment>
+      <div>
+        <main className="phonebook-template">
+          <div className="title">
+            Magnificent Phonebook
+          </div>
+          <section className="search-wrapper">
+            <input
+              placeholder="Search Name..."
+              onChange={this.handleChange}
+              value={keyword}
+            />
+          </section>
+          <section className="form-wrapper">
+            <Phoneform 
+              onCreate={this.handleCreate} 
+            />
+          </section>
+          <section className="entry-wrapper">
+            <PhoneInfoList 
+              data={filteredList}
+              onRemove={this.handleRemove}
+              onEdit={this.handleEdit}
+            />
+          </section>
+        </main>
+      </div>
     );
   }
 }
